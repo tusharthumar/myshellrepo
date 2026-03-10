@@ -1,0 +1,28 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show repo contents
+        run: ls -la
+
+      - name: Run shell script
+        run: bash scripts/hello.sh
+
+      - name: Print environment info
+        run: |
+          echo "Runner OS: $RUNNER_OS"
+          echo "GitHub Actor: $GITHUB_ACTOR"
+          echo "GitHub Repo: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
